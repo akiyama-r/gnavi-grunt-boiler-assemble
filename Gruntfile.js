@@ -1,28 +1,28 @@
 /**
- * grunt-boiler
- * 
+ * gnavi-grunt-boiler-assemble
+ *
  * ** 開発開始手順
- * 
+ *
  * $ npm install
  * $ grunt sprite
  * $ grunt
- * 
+ *
  * ** 開発watchコマンド
- * 
+ *
  * $ grunt watch
- * 
+ *
  * ** spriteコマンド
- * 
+ *
  * $ grunt sprite
- * 
- * ** jshintコマンド
- * 
+ *
+ * ** eslintコマンド
+ *
  * $ grunt test
- * 
+ *
  * ** dist、tmp削除コマンド
- * 
+ *
  * $ grunt clean
- * 
+ *
  * ---------------------------------------------------------------------- */
 
 module.exports = function (grunt) {
@@ -251,10 +251,6 @@ module.exports = function (grunt) {
     },
 
     // test
-    jshint: {
-      all: ['Gruntfile.js', '<%= path.js_src %>all/*.js']
-    },
-
     eslint: {
       options: {},
       target: ['<%= path.js_src %>all/*.js']
@@ -268,10 +264,10 @@ module.exports = function (grunt) {
   grunt.registerTask('build:html', ['assemble']);
   grunt.registerTask('build:copy', ['copy']);
   grunt.registerTask('build', ['build:css', 'build:js', 'build:html', 'build:copy']);
-  grunt.registerTask('test', ['jshint', 'eslint']);
+  grunt.registerTask('test', ['eslint']);
   grunt.registerTask('styleguide', ['build', 'styledocco']);
   grunt.registerTask('default', ['build']);
-  
+
   // option task
   grunt.registerTask('local', 'build for local', function () {
     grunt.config.set('assemble.files.options.statPath', '../');
