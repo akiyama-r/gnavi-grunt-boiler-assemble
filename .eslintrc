@@ -1,9 +1,5 @@
 {
-  "extends": ["eslint-config-gnavi/legacy"],
-  "env": {
-    "browser": true,
-    "node": false
-  },
+  "extends": ["gnavi/legacy"],
   "globals": {
     "PROJECTNAMESPACE": true,
     "$": true,
