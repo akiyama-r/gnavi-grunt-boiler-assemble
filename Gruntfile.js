@@ -25,14 +25,13 @@
  *
  * ---------------------------------------------------------------------- */
 
-module.exports = function (grunt) {
-
+module.exports = function gruntfile(grunt) {
   // manage
-  require('time-grunt')(grunt);
+  require('time-grunt')(grunt)
   require('jit-grunt')(grunt, {
     // sprite
     sprite: 'grunt-spritesmith'
-  });
+  })
 
   // process
   grunt.initConfig({
@@ -174,7 +173,7 @@ module.exports = function (grunt) {
         },
 
         // file
-        file : {
+        file: {
           css: {
             all: 'all-<%= version.css.all %>.css'
           },
@@ -254,29 +253,28 @@ module.exports = function (grunt) {
     eslint: {
       options: {},
       target: ['<%= path.js_src %>all/*.js']
-    },
-
-  });
+    }
+  })
 
   // task
-  grunt.registerTask('build:css', ['sass', 'autoprefixer', 'csscomb', 'csso']);
-  grunt.registerTask('build:js', ['concat', 'uglify']);
-  grunt.registerTask('build:html', ['assemble']);
-  grunt.registerTask('build:copy', ['copy']);
-  grunt.registerTask('build', ['build:css', 'build:js', 'build:html', 'build:copy']);
-  grunt.registerTask('test', ['eslint']);
-  grunt.registerTask('styleguide', ['build', 'styledocco']);
-  grunt.registerTask('default', ['build']);
+  grunt.registerTask('build:css', ['sass', 'autoprefixer', 'csscomb', 'csso'])
+  grunt.registerTask('build:js', ['concat', 'uglify'])
+  grunt.registerTask('build:html', ['assemble'])
+  grunt.registerTask('build:copy', ['copy'])
+  grunt.registerTask('build', ['build:css', 'build:js', 'build:html', 'build:copy'])
+  grunt.registerTask('test', ['eslint'])
+  grunt.registerTask('styleguide', ['build', 'styledocco'])
+  grunt.registerTask('default', ['build'])
 
   // option task
-  grunt.registerTask('local', 'build for local', function () {
-    grunt.config.set('assemble.files.options.statPath', '../');
-    grunt.config.set('assemble.files.options.viewPath', '../');
-    grunt.task.run(['build']);
-  });
-  grunt.registerTask('dev', 'build for dev', function () {
-    grunt.config.set('assemble.files.options.statPath', '/');
-    grunt.config.set('assemble.files.options.viewPath', '/');
-    grunt.task.run(['build']);
-  });
-};
+  grunt.registerTask('local', 'build for local', function localBuild() {
+    grunt.config.set('assemble.files.options.statPath', '../')
+    grunt.config.set('assemble.files.options.viewPath', '../')
+    grunt.task.run(['build'])
+  })
+  grunt.registerTask('dev', 'build for dev', function devBuild() {
+    grunt.config.set('assemble.files.options.statPath', '/')
+    grunt.config.set('assemble.files.options.viewPath', '/')
+    grunt.task.run(['build'])
+  })
+}
